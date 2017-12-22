@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="470.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Home">
+   <children>
+      <Pane prefHeight="470.0" prefWidth="207.0" style="-fx-background-color: #2D3447;">
+         <children>
+             <Label layoutX="67.0" layoutY="10.0" text="IoT" textFill="#2196f3">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font></Label>
+             <Label layoutX="104.0" layoutY="10.0" text=".inc" textFill="#a2a0ab">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Line endX="95.0" layoutX="103.0" layoutY="74.0" startX="-95.0" stroke="#a2a0ab" />
+            <JFXButton layoutX="40.0" layoutY="90.0" text="Home" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="40.0" layoutY="160.0" text="User's profile" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="40.0" layoutY="230.0" text="Topography" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="40.0" layoutY="265.0" text="Exception Taken" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="75.0" layoutY="40.0" text="Dashboard" textFill="#a2a0ab" />
+            <JFXButton fx:id="exitB" layoutX="78.0" layoutY="434.0" onAction="#sureExit" text="Exit" textFill="WHITE" underline="true" />
+            <Line endX="85.0" layoutX="113.0" layoutY="130.0" scaleY="0.3" startX="-70.0" stroke="WHITE" />
+            <Line endX="95.0" layoutX="103.0" layoutY="430.0" startX="-95.0" stroke="#a2a0ab" />
+            <Line endX="85.0" layoutX="113.0" layoutY="305.0" scaleY="0.3" startX="-70.0" stroke="WHITE" />
+            <Line endX="85.0" layoutX="113.0" layoutY="200.0" scaleY="0.3" startX="-70.0" stroke="WHITE" />
+            <ImageView fitHeight="25.0" fitWidth="35.0" layoutX="10.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8">
+               <image>
+                  <Image url="@../images/home.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="35.0" layoutX="10.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8">
+               <image>
+                  <Image url="@../images/user.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="35.0" layoutX="10.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8">
+               <image>
+                  <Image url="@../images/location.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="35.0" layoutX="10.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8">
+               <image>
+                  <Image url="@../images/error.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <TableView fx:id="tableTW" layoutX="279.0" layoutY="99.0" prefHeight="273.0" prefWidth="451.0">
+         <columns>
+            <TableColumn fx:id="aziendaCol" prefWidth="75.0" text="Azienda" />
+            <TableColumn fx:id="nameCol" prefWidth="75.0" text="Nome" />
+            <TableColumn fx:id="surnameCol" prefWidth="75.0" text="Cognome" />
+            <TableColumn fx:id="usernameCol" prefWidth="75.0" text="Username" />
+            <TableColumn fx:id="emailCol" prefWidth="75.0" text="Email" />
+            <TableColumn fx:id="passwordCol" prefWidth="75.0" text="Password" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

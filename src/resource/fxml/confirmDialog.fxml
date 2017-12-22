@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="85.0" prefWidth="315.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ConfirmDialog">
+   <children>
+      <Label layoutX="14.0" layoutY="10.0" text="Are you sure?" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="yesB" layoutX="14.0" layoutY="50.0" onAction="#yes" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #151928;" text="Yes" textFill="#a2a0ab" />
+      <JFXButton fx:id="noB" layoutX="169.0" layoutY="50.0" onAction="#no" prefHeight="25.0" prefWidth="132.0" style="-fx-background-color: #151928;" text="No" textFill="#a2a0ab" />
+   </children>
+</AnchorPane>
