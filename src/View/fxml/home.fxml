@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="470.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Home">
+<AnchorPane prefHeight="470.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Home">
    <children>
       <Pane prefHeight="470.0" prefWidth="207.0" style="-fx-background-color: #2D3447;">
          <children>
@@ -24,12 +24,12 @@
                   <Font size="24.0" />
                </font></Label>
             <Line endX="95.0" layoutX="103.0" layoutY="74.0" startX="-95.0" stroke="#a2a0ab" />
-            <JFXButton layoutX="40.0" layoutY="90.0" text="Home" textFill="WHITE">
+            <JFXButton fx:id="homeB" layoutX="40.0" layoutY="90.0" onAction="#handlePanel" text="Home" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="40.0" layoutY="160.0" text="User's profile" textFill="WHITE">
+            <JFXButton fx:id="profileB" layoutX="40.0" layoutY="160.0" onAction="#handlePanel" text="User's profile" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -39,7 +39,7 @@
                   <Font size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="40.0" layoutY="265.0" text="Exception Taken" textFill="WHITE">
+            <JFXButton layoutX="40.0" layoutY="265.0" text="Surveyes" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
@@ -48,7 +48,7 @@
             <JFXButton fx:id="exitB" layoutX="78.0" layoutY="434.0" onAction="#sureExit" text="Exit" textFill="WHITE" underline="true" />
             <Line endX="85.0" layoutX="113.0" layoutY="130.0" scaleY="0.3" startX="-70.0" stroke="WHITE" />
             <Line endX="95.0" layoutX="103.0" layoutY="430.0" startX="-95.0" stroke="#a2a0ab" />
-            <Line endX="85.0" layoutX="113.0" layoutY="305.0" scaleY="0.3" startX="-70.0" stroke="WHITE" />
+            <Line endX="85.0" layoutX="113.0" layoutY="340.0" scaleY="0.3" startX="-70.0" stroke="WHITE" />
             <Line endX="85.0" layoutX="113.0" layoutY="200.0" scaleY="0.3" startX="-70.0" stroke="WHITE" />
             <ImageView fitHeight="25.0" fitWidth="35.0" layoutX="10.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8">
                <image>
@@ -65,22 +65,32 @@
                   <Image url="@../images/location.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="25.0" fitWidth="35.0" layoutX="10.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8">
+            <ImageView fitHeight="25.0" fitWidth="40.0" layoutX="10.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8">
                <image>
                   <Image url="@../images/error.png" />
                </image>
             </ImageView>
+            <JFXButton layoutX="40.0" layoutY="300.0" text="Exception Taken" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
          </children>
       </Pane>
-      <TableView fx:id="tableTW" layoutX="279.0" layoutY="99.0" prefHeight="273.0" prefWidth="451.0">
-         <columns>
-            <TableColumn fx:id="aziendaCol" prefWidth="75.0" text="Azienda" />
-            <TableColumn fx:id="nameCol" prefWidth="75.0" text="Nome" />
-            <TableColumn fx:id="surnameCol" prefWidth="75.0" text="Cognome" />
-            <TableColumn fx:id="usernameCol" prefWidth="75.0" text="Username" />
-            <TableColumn fx:id="emailCol" prefWidth="75.0" text="Email" />
-            <TableColumn fx:id="passwordCol" prefWidth="75.0" text="Password" />
-         </columns>
-      </TableView>
+      <Pane fx:id="userPanel" layoutX="206.0" prefHeight="470.0" prefWidth="594.0" style="-fx-background-color: #2D3447;" />
+      <Pane fx:id="homePanel" layoutX="206.0" prefHeight="470.0" prefWidth="594.0" style="-fx-background-color: #f4f4f4;">
+         <children>
+            <TableView fx:id="tableTW" layoutX="27.0" layoutY="73.0" prefHeight="324.0" prefWidth="541.0">
+               <columns>
+                  <TableColumn fx:id="aziendaCol" prefWidth="90.0" text="Azienda" />
+                  <TableColumn fx:id="nameCol" prefWidth="90.0" text="Nome" />
+                  <TableColumn fx:id="surnameCol" prefWidth="90.0" text="Cognome" />
+                  <TableColumn fx:id="usernameCol" prefWidth="90.0" text="Username" />
+                  <TableColumn fx:id="emailCol" prefWidth="90.0" text="Email" />
+                  <TableColumn fx:id="passwordCol" prefWidth="90.0" text="Password" />
+               </columns>
+            </TableView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

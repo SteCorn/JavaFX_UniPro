@@ -1,11 +1,9 @@
-package Controllers;
+package Controller;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-import java.io.IOException;
 
 public class ConfirmDialog {
 
@@ -16,13 +14,13 @@ public class ConfirmDialog {
     private JFXButton noB;
 
     @FXML
-    public void yes (ActionEvent e) throws IOException {
+    public void yes (ActionEvent e) {
         Platform.exit();
         System.exit(0);
     }
 
     @FXML
-    public void no (ActionEvent e) throws IOException {
+    public void no (ActionEvent e) {
         noB.getScene().getWindow().hide();
     }
 }

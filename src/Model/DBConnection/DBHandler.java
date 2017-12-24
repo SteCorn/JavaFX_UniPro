@@ -1,4 +1,4 @@
-package DBConnection;
+package Model.DBConnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,12 +6,11 @@ import java.sql.SQLException;
 
 public class DBHandler {
 
-    Connection dbconnection;
-    private static boolean hasData = false;
+    private Connection dbconnection;
 
     public Connection getConnetion() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
-        dbconnection = DriverManager.getConnection("jdbc:sqlite:SQLiteTest.db");
+        dbconnection = DriverManager.getConnection("jdbc:sqlite:db.db");
         return dbconnection;
     }
 

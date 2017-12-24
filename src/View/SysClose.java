@@ -1,3 +1,5 @@
+package View;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,16 +15,16 @@ public class SysClose {
 
             Stage sureEx = new Stage();
             sureEx.initModality(Modality.APPLICATION_MODAL);
-            Parent parent = null;
+            Parent parent;
             try {
-                parent = FXMLLoader.load(getClass().getResource("resource/fxml/confirmDialog.fxml"));
+                parent = FXMLLoader.load(getClass().getResource("View/fxml/confirmDialog.fxml"));
+                sureEx.setTitle("Are you sure?");
+                sureEx.setScene(new Scene(parent, 315, 85));
+                sureEx.setResizable(false);
+                sureEx.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            sureEx.setTitle("Are you sure?");
-            sureEx.setScene(new Scene(parent, 315, 85));
-            sureEx.setResizable(false);
-            sureEx.show();
         });
     }
 }

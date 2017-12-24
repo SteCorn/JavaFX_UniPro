@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="355.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Login">
+<AnchorPane prefHeight="400.0" prefWidth="355.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Login">
 
     <children>
         <ImageView fitHeight="184.0" fitWidth="121.0" layoutX="128.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -33,6 +33,11 @@
                 <Font size="14.0" />
             </font>
         </JFXTextField>
+        <JFXPasswordField id="passwordPF" fx:id="passwordPF" layoutX="86.0" layoutY="244.0" prefHeight="25.0" prefWidth="204.0" promptText=" Password" style="-fx-text-inner-color: #a0a2ab;" unFocusColor="#a2a0ab">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </JFXPasswordField>
         <ImageView fitHeight="30.0" fitWidth="28.0" layoutX="50.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/contact.png" />
@@ -53,11 +58,6 @@
             <Font size="14.0" />
          </font>
       </JFXButton>
-      <JFXPasswordField id="passwordPF" fx:id="passwordPF" layoutX="86.0" layoutY="244.0" prefHeight="25.0" prefWidth="204.0" promptText=" Password" style="-fx-text-inner-color: #a0a2ab;" unFocusColor="#a2a0ab">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </JFXPasswordField>
     </children>
 
 </AnchorPane>

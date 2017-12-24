@@ -1,8 +1,8 @@
-package Controllers;
+package Controller;
 
-import DBConnection.DBHandler;
+import Model.DBConnection.DBHandler;
 import com.jfoenix.controls.JFXButton;
-import com.sun.org.omg.CORBA.Initializer;
+import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,21 +14,33 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import Model.Client;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 
-public class Home implements Initializable {
+public class Home extends Application implements Initializable {
+
+    @FXML
+    private JFXButton homeB;
+
+    @FXML
+    private JFXButton profileB;
+
+    @FXML
+    private Pane userPanel;
+
+    @FXML
+    private Pane homePanel;
+
     @FXML
     private JFXButton exitB;
+
     @FXML
     private TableView<Client> tableTW;
 
@@ -53,7 +65,34 @@ public class Home implements Initializable {
     private Connection connection;
     private DBHandler handler;
 
-    ObservableList<Client> list = FXCollections.observableArrayList();
+    private ObservableList<Client> list = FXCollections.observableArrayList();
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("../View/fxml/home.fxml"));
+        primaryStage.setTitle("Dashboard");
+        primaryStage.setScene(new Scene(root, 790, 460));
+        primaryStage.setResizable(false);
+        primaryStage.show();
+
+        primaryStage.getScene().getWindow().setOnCloseRequest(event -> {
+            event.consume();
+
+            Stage sureEx = new Stage();
+            sureEx.initModality(Modality.APPLICATION_MODAL);
+            Parent parent;
+
+            try {
+                parent = FXMLLoader.load(getClass().getResource("../View/fxml/confirmDialog.fxml"));
+                sureEx.setTitle("Are you sure?");
+                sureEx.setScene(new Scene(parent, 315, 85));
+                sureEx.setResizable(false);
+                sureEx.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -61,36 +100,35 @@ public class Home implements Initializable {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("Nome"));
         surnameCol.setCellValueFactory(new PropertyValueFactory<>("Cognome"));
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("Username"));
-        emailCol.setCellValueFactory(new PropertyValueFactory<>("Email"));
         passwordCol.setCellValueFactory(new PropertyValueFactory<>("Password"));
+        emailCol.setCellValueFactory(new PropertyValueFactory<>("Email"));
 
 
         handler = new DBHandler();
         try {
             connection = handler.getConnetion();
-            loadDBData();
+            loadDBData_ClienteData();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
-    private void loadDBData(){
+    private void loadDBData_ClienteData(){
         try {
-            PreparedStatement prep = connection.prepareStatement("SELECT * FROM user");
+            PreparedStatement prep = connection.prepareStatement("SELECT * FROM Cliente");
             ResultSet rs = prep.executeQuery();
 
             while(rs.next()){
                 //Costruzione della tabella
                 list.add(new Client(
-                        rs.getString("company"),
-                        rs.getString("name"),
-                        rs.getString("surname"),
-                        rs.getString("username"),
-                        rs.getString("password"),
-                        rs.getString("email")
+                        rs.getString("Azienda"),
+                        rs.getString("Nome"),
+                        rs.getString("Cognome"),
+                        rs.getString("Username"),
+                        rs.getString("Password"),
+                        rs.getString("Email")
                 ));
                 tableTW.setItems(list);
             }
@@ -107,11 +145,18 @@ public class Home implements Initializable {
     public void sureExit (ActionEvent e) throws IOException {
         Stage sureEx = new Stage();
         sureEx.initModality(Modality.APPLICATION_MODAL);
-        Parent root = FXMLLoader.load(getClass().getResource("../resource/fxml/confirmDialog.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../View/fxml/confirmDialog.fxml"));
         sureEx.setTitle("Are you sure?");
         sureEx.setScene(new Scene(root, 315, 85));
         sureEx.setResizable(false);
         sureEx.show();
     }
 
+    @FXML
+    private void handlePanel(ActionEvent event){
+        if(event.getSource() == homeB)
+            homePanel.toFront();
+        else if(event.getSource() == profileB)
+            userPanel.toFront();
+    }
 }

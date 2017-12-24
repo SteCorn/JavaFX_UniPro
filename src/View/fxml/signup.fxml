@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="328.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Signup">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="328.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Signup">
    <children>
       <Label layoutX="27.0" layoutY="33.0" text="Sign in or sign up" textFill="#a2a0ab">
          <font>
@@ -45,6 +45,11 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
+      <JFXTextField fx:id="usernameTF" layoutX="26.0" layoutY="223.0" prefHeight="30.0" prefWidth="276.0" promptText="Insert username" style="-fx-text-inner-color: #a0a2ab;" unFocusColor="#a2a0ab">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXTextField>
       <JFXPasswordField fx:id="passwordTF" layoutX="26.0" layoutY="282.0" prefHeight="30.0" prefWidth="276.0" promptText=" Password" style="-fx-text-inner-color: #a0a2ab;" unFocusColor="#a2a0ab">
          <font>
             <Font size="14.0" />
@@ -80,10 +85,5 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="usernameTF" layoutX="26.0" layoutY="223.0" prefHeight="30.0" prefWidth="276.0" promptText="Insert username" style="-fx-text-inner-color: #a0a2ab;" unFocusColor="#a2a0ab">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </JFXTextField>
    </children>
 </Pane>

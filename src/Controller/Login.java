@@ -1,7 +1,6 @@
-package Controllers;
+package Controller;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -18,18 +17,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import java.sql.*;
-import DBConnection.DBHandler;
+import Model.DBConnection.DBHandler;
 
 public class Login implements Initializable {
 
     @FXML
     private JFXTextField usernameTF;
     @FXML
-    private JFXCheckBox rememberCB;
-    @FXML
     private JFXButton loginB;
-    @FXML
-    private JFXButton forgotB;
     @FXML
     private JFXButton signupB;
     @FXML
@@ -45,11 +40,11 @@ public class Login implements Initializable {
     }
 
     @FXML
-    public void login(ActionEvent e0) throws SQLException {
+    public void login(ActionEvent e0) {
         handler = new DBHandler();
         try {
             connection = handler.getConnetion();
-            PreparedStatement prep = connection.prepareStatement("SELECT username, password FROM user WHERE username = ? AND password = ?");
+            PreparedStatement prep = connection.prepareStatement("SELECT Username, Password FROM Cliente WHERE Username = ? AND Password = ?");
 
             prep.setString(1, usernameTF.getText());
             prep.setString(2, passwordPF.getText());
@@ -76,40 +71,31 @@ public class Login implements Initializable {
         } catch (SQLException e) {
             System.out.println("SQL");
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
     @FXML
     public void signup (ActionEvent e) throws IOException {
-        loginB.getScene().getWindow().hide();
+        signupB.getScene().getWindow().hide();
 
         Stage signUp = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../resource/fxml/signup.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../View/fxml/signup.fxml"));
         signUp.setTitle("Sign up");
         signUp.setScene(new Scene(root, 328, 490));
         signUp.setResizable(false);
         signUp.show();
-
-
-
-        signUp.setOnCloseRequest(event -> {
-            event.consume();
-
-        });
     }
 
-    public void dashboard () throws IOException {
+    private void dashboard() {
         loginB.getScene().getWindow().hide();
 
-        Stage dashboard = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../resource/fxml/home.fxml"));
-        dashboard.setTitle("Dashboard");
-        dashboard.setScene(new Scene(root, 790, 460));
-        dashboard.setResizable(false);
-        dashboard.show();
+        Stage stage = new Stage();
+        Home home = new Home();
+        try {
+            home.start(stage);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
     }
-
 }
 

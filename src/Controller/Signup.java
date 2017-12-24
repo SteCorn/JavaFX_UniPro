@@ -1,4 +1,4 @@
-package Controllers;
+package Controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
@@ -17,7 +17,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-import DBConnection.DBHandler;
+import Model.DBConnection.DBHandler;
 
 public class Signup implements Initializable {
 
@@ -63,12 +63,12 @@ public class Signup implements Initializable {
                 hasData = true;
 
                 Statement resState = connection.createStatement();
-                ResultSet res =  resState.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name = 'user'");
+                ResultSet res =  resState.executeQuery("SELECT name FROM sqlite_master WHERE type='table' AND name = 'Cliente'");
 
                 if(!res.next()){
                     //Costruzione della tabella
                     Statement state = connection.createStatement();
-                    state.execute("CREATE TABLE user(company varchar(100), name varchar(60), surname varchar(60), username varchar(60), password varchar(60), email varchar(60), primary key(username));");
+                    state.execute("create table Cliente (Username varchar(60) primary key, Azienda varchar(60), Nome varchar(60), Cognome varchar(60), Email varchar(60), Password varchar(60));");
                 }
             }
 
@@ -84,35 +84,41 @@ public class Signup implements Initializable {
     }
 
     @FXML
-    public void signup(ActionEvent e0) throws SQLException {
+    public void signup(ActionEvent e0) throws SQLException, IOException {
         if(termsCB.isSelected()) {
             //Inserimento dati
-            PreparedStatement prep = connection.prepareStatement("INSERT INTO user values(?, ?, ?, ?, ?, ?);");
-            prep.setString(1, companyTF.getText());
-            prep.setString(2, nameTF.getText());
-            prep.setString(3, surnameTF.getText());
-            prep.setString(4, usernameTF.getText());
-            prep.setString(5, passwordTF.getText());
-            prep.setString(6, emailTF.getText());
+            PreparedStatement prep = connection.prepareStatement("INSERT INTO Cliente values(?, ?, ?, ?, ?, ?);");
+            prep.setString(1, usernameTF.getText());
+            prep.setString(2, companyTF.getText());
+            prep.setString(3, nameTF.getText());
+            prep.setString(4, surnameTF.getText());
+            prep.setString(5, emailTF.getText());
+            prep.setString(6, passwordTF.getText());
             prep.execute();
+
+            loginScreen();
         }
     }
 
     @FXML
     public void returnToLogin(ActionEvent e1) throws IOException {
+        loginScreen();
+    }
+
+    @FXML
+    public void checkBottomCheck(ActionEvent e2) {
+        signupB.setDisable(false);
+    }
+
+    private void loginScreen() throws IOException {
         signupB.getScene().getWindow().hide();
 
         Stage login = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("../resource/fxml/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../View/fxml/login.fxml"));
         login.setTitle("Log In");
         login.setScene(new Scene(root, 355, 400));
         login.setResizable(false);
         login.show();
-    }
-
-    @FXML
-    public void checkBottomCheck(ActionEvent e2) throws IOException {
-        signupB.setDisable(false);
     }
 
 }
