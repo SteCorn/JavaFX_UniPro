@@ -127,8 +127,8 @@ public class Home extends Application implements Initializable {
                         rs.getString("Nome"),
                         rs.getString("Cognome"),
                         rs.getString("Username"),
-                        rs.getString("Password"),
-                        rs.getString("Email")
+                        rs.getString("Email"),
+                        rs.getString("Password")
                 ));
                 tableTW.setItems(list);
             }
@@ -150,6 +150,8 @@ public class Home extends Application implements Initializable {
         sureEx.setScene(new Scene(root, 315, 85));
         sureEx.setResizable(false);
         sureEx.show();
+
+        // È possibile aggiungere opzioni di salvataggio
     }
 
     @FXML
